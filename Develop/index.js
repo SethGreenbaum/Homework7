@@ -4,12 +4,24 @@ var inquirer = require("inquirer");
 var fs = require('fs');
 const axios = require("axios");
 
+console.log(
+    `=====================================\n
+    -----Welcome to README generator!-----\n
+    ======================================\n
+    ======================================\n
+    ======================================\n
+    ======================================\n
+    - - - - - - - - - - - - - - - - - - - \n
+    -----Let's make a README together!----\n
+    - - - - - - - - - - - - - - - - - - - \n
+    ######################################\n`
+)
+
 function generateMarkdown(response, user) {
     return `
   # ${response.project} \n
   ## Created By:\n
-  ![Profile Image]
-  (${user.avatar_url})
+  ![Profile Image](${user.avatar_url})\n
   ${user.name}\n
   *GitHub Username: ${response.username}\n
   *Email: ${user.email}\n
@@ -54,12 +66,7 @@ inquirer.prompt([
     {
         type: "input",
         name: "username",
-        message: "What is your Github Username?"
-    },
-    {
-        type: "input",
-        name: "repo",
-        message: "What is the name of your repository?"
+        message: "What is your GitHub Username?"
     },
     {
         type: "input",
@@ -69,37 +76,32 @@ inquirer.prompt([
     {
         type: "input",
         name: "description",
-        message: "Please Describe your project"
+        message: "Now, write a brief description of your project:"
     },
     {
         type: "input",
         name: "installation",
-        message: "Please provide installation installation instructions your project"
-    },
-    {
-        type: "input",
-        name: "description",
-        message: "Please Describe your project"
+        message: "Here, provide installation instructions your project:"
     },
     {
         type: "input",
         name: "usage",
-        message: "Please Describe your project usage"
+        message: "Please describe here what your project does and how you intend to use it:"
     },
     {
         type: "input",
         name: "license",
-        message: "Please provide the license for your project"
+        message: "Enter the name of the type of license you are using with your project, or enter -none-"
     },
     {
         type: "input",
         name: "contributing",
-        message: "Please list all contributors"
+        message: "Here you should list all contributors to this project"
     },
     {
         type: "input",
         name: "testing",
-        message: "Please describe testing procedures"
+        message: "Describe the methods used to test the project"
     },
     {
         type: "input",
