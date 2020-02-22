@@ -1,31 +1,36 @@
-const api = require("./utils/api");
 const generateMarkdown = require("./utils/generateMarkdown")
 const inquirer = require("inquirer");
 const fs = require('fs');
 const axios = require("axios");
-// var response;
-// var res;
 
 console.log(
     `\n
     ======================================\n
     -----Welcome to README generator!-----\n
     ======================================\n
-    ======================================\n
-    ======================================\n
-    ======================================\n
+    \n
     - - - - - - - - - - - - - - - - - - - \n
     -----Let's make a README together!----\n
     - - - - - - - - - - - - - - - - - - - \n
-    ######################################\n`
+    \n`
 )
 
 const questions = [
     {
         type: "input",
         name: "username",
-        message: "What is your GitHub Username?"
+        message: "What is the GitHub Username of your project repo?"
     },
+    {
+        type: "input",
+        name: "email",
+        message: "Provide a contact email address"
+    },
+    // {
+    //     type: "password",
+    //     name: "password",
+    //     message: "Enter your password to authenticate"
+    // },
     {
         type: "input",
         name: "project",
@@ -69,60 +74,34 @@ const questions = [
     {
         type: "input",
         name: "questions",
-        message: "Please list all questions"
+        message: "List some relevant questions"
     }
 ];
 
 function writeToFile(response,userObj) {
     var markdown = generateMarkdown(response,userObj)
     fs.writeFile("README.md", markdown , function(err) {
-
       if (err) {
         return console.log(err);
-      }
-  
-      console.log("Success!");
-  
+      } 
+      console.log("Success!"); 
      });
 }
-// async function queryGit(response,usernameUrl) {
-//     try {
-//       const { res } = await api.getUser(usernameUrl);
-  
-//       writeToFile(response,res);
-    
-//     } catch (err) {
-//       console.log(err);
-//     }
-//   }
-  
+
 function init() {
     inquirer.prompt(questions).then(function(data) {
         var response = data;
         const usernameUrl = `https://api.github.com/users/${data.username}`
-        axios.get(usernameUrl).then(
-            function (res) {
+        // ?client_id=${response.username}&client_secret=${response.password}`
+        axios.get(usernameUrl ).then(function (res) {
             writeToFile(response,res.data)
-        });
+            }).catch(function (error) {
+            console.log(error);
+            }).then(function () {
+            console.log("Thank you for using README generator")
+            });
+        ;
     });
 }
 
-// const results = api.getUser("SethGreenbaum");
-// console.log(results)
- 
 init();
-
-
-
-
-
-// inquirer.prompt(questions).then(function(data) {
-//     var response = data;
-//     const usernameUrl = `https://api.github.com/users/${data.username}`
-//     axios.get(usernameUrl).then(
-//         function (res) {
-//         console.log(res)
-//         writeToFile(response,res.data)
-//     });
-// });
-
