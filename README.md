@@ -1,4 +1,3 @@
-
 # README generator 
 
 ## Created By:
@@ -17,7 +16,7 @@ Seth Greenbaum
 
 ## Description 
 
-This is a CLI wizard for generating a README for your github projects 
+An app that makes a README 
 
 ## Table of Contents 
 
@@ -35,19 +34,19 @@ This is a CLI wizard for generating a README for your github projects
 
 ## Installation 
 
-npm install in command line for axios, then node index.js 
+npm install node index.js to run 
 
 ## Usage 
 
-This is a simple application for creating a readme for a github project based on what is entered in response to a series of prompts 
+Following a series of prompt, generate a README for your github project 
 
-##Credits
+## Credits
 
-all by myself
+DU coding bootcamp for coming up with the idea
 
 ## Contributing 
 
-no contributions please 
+no contributions at this time 
 
 ## License 
 
@@ -55,15 +54,12 @@ none
 
 ## Tests 
 
-command line testing 
+console.log, command line test 
 
 ## Questions 
 
-none 
+What else could we add to our template? 
 
 
 
 ![badge](https://img.shields.io/badge/Generated%20By-README%20Generator-blue)
-
-
-
